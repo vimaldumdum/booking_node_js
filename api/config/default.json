@@ -1,0 +1,9 @@
+{
+    "Server" : {
+        "host" : "http://localhost",
+        "port" : 8081
+    },
+    "DB" : {
+        "mongo" : "YOUR-SECRET-KEY"
+    }
+}
