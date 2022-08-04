@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import {create, updateOrg, deleteOrg, getOneOrg, getOrgs} from "../controllers/organization.js";
 
 const route = express.Router();
