@@ -4,6 +4,6 @@
         "port" : 8081
     },
     "DB" : {
-        "mongo" : "YOUR-SECRET-KEY"
+        "mongo" : "mongodb+srv://vimaldumdum:vimal123@cluster0.ueoqgy0.mongodb.net/?retryWrites=true&w=majority"
     }
 }

@@ -1,6 +1,7 @@
 import express from "express";
 import config from "config";
 import mongoose from "mongoose";
+import orgRoute from "./routes/organization.js";
 
 var connect = async () => {
     try {
@@ -24,3 +25,6 @@ app.listen(config.get("Server.port"), ()=>{
     connect();
     console.log("Server is up on port: " + config.get("Server.port"));
 })
+
+app.use(express.json());
+app.use("/org", orgRoute);
