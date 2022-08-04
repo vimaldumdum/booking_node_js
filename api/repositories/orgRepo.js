@@ -8,9 +8,9 @@ class OrgRepository {
             "status" : 500
         };
         try {
-            const savedOrg = newOrg.save();
+            const savedOrg = await newOrg.save();
             response['status'] = 200;
-            response['body'] = json(savedOrg);
+            response['body'] = savedOrg;
             return response;
         } catch(error) {
             response['body'] = error;
@@ -29,7 +29,7 @@ class OrgRepository {
                 {new: true}
             );
             response['status'] = 200;
-            response['body'] = json(updatedOrg);
+            response['body'] = updatedOrg;
             return response;
         } catch(error) {
             response['body'] = error;
@@ -39,6 +39,7 @@ class OrgRepository {
 
 
 }
+
 var orgRepo;
 if(typeof orgRepo === 'undefined') {
     orgRepo = new OrgRepository();

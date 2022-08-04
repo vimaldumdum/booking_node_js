@@ -28,6 +28,3 @@ app.listen(config.get("Server.port"), ()=>{
 
 app.use(express.json());
 app.use("/org", orgRoute);
-app.get("/", (req, res) => {
-    res.send("Hello");
-})
