@@ -1,33 +1,16 @@
-import express, { response } from "express";
-import OrgRepo from "../repositories/orgRepo.js"
+import express from "express";
+import {create, updateOrg, deleteOrg, getOneOrg, getOrgs} from "../controllers/organization.js";
 
 const route = express.Router();
 
-route.get("/", async (req, res) => {
-    var response = await OrgRepo.getAllOrgs();
-    res.status(response.status).json(response.body);
-});
+route.get("/", getOrgs);
 
-route.get("/:id", async (req, res) => {
-    var response = await OrgRepo.getOrgById(req.params.id);
-    res.status(response.status).json(response.body);
-});
+route.get("/:id", getOneOrg);
 
-route.delete("/remove:id", async (req, res) => {
-    var response = await OrgRepo.deleteOrgById(req.params.id);
-    res.status(response.status).json(response.body);
-});
+route.delete("/:id", deleteOrg);
 
-route.post("/create", async (req, res) => {
-    console.log("req rec: " + JSON.stringify(req.body));
-    var response = await OrgRepo.createOrg(req.body);
-    res.status(response.status).json(response.body);
-});
+route.post("/create", create);
 
-route.put("/update:id", async (req, res) => {
-    console.log("req rec: " + JSON.stringify(req.body));
-    var response = await OrgRepo.updateOrg(req.params.id, req.body);
-    res.status(response.status).json(response.body);
-});
+route.put("/:id", updateOrg);
 
 export default route;
