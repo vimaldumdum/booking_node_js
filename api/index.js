@@ -2,8 +2,8 @@ import express from "express";
 import config from "config";
 import mongoose from "mongoose";
 import orgRoute from "./routes/organization.js";
-import createError from "./utils/error.js";
 
+//connect to DB
 var connect = async () => {
     try {
         await mongoose.connect(config.get("DB.mongo"));
@@ -13,6 +13,7 @@ var connect = async () => {
     }
 }
 
+//Connection listeners
 mongoose.connection.on("disconnected", () => {
     console.log("DB disconnected");
 })
@@ -21,11 +22,8 @@ mongoose.connection.on("connected", () => {
     console.log("DB connected");
 })
 
+//initialize express
 const app = express();
-app.listen(config.get("Server.port"), ()=>{
-    connect();
-    console.log("Server is up on port: " + config.get("Server.port"));
-})
 
 // Middlewares
 app.use(express.json());
@@ -43,3 +41,9 @@ app.use((err, req, res, next) => {
         "trace" : err.stack
     });
 });
+
+//listen to port
+app.listen(config.get("Server.port"), ()=>{
+    connect();
+    console.log("Server is up on port: " + config.get("Server.port"));
+})
