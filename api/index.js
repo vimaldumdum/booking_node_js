@@ -2,6 +2,7 @@ import express from "express";
 import config from "config";
 import mongoose from "mongoose";
 import orgRoute from "./routes/organization.js";
+import createError from "./utils/error.js";
 
 var connect = async () => {
     try {
@@ -26,5 +27,19 @@ app.listen(config.get("Server.port"), ()=>{
     console.log("Server is up on port: " + config.get("Server.port"));
 })
 
+// Middlewares
 app.use(express.json());
 app.use("/org", orgRoute);
+
+//Error handling middleware
+app.use((err, req, res, next) => {
+    console.log("Error handling middleware");
+    const errorStatus = err.status || 500;
+    const errorMessage = err.message || "Something went wrong";
+    res.status(errorStatus).json({
+        "success" : false,
+        "status" : errorStatus,
+        "message" : errorMessage,
+        "trace" : err.stack
+    });
+});
