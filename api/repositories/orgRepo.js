@@ -2,7 +2,8 @@ import OrgModel from "../models/Organization.js";
 
 class OrgRepository {
 
-    async createHotel(body) {
+    //Create new organization
+    async createOrg(body) {
         const newOrg = new OrgModel(body);
         var response = {
             "status" : 500
@@ -18,7 +19,8 @@ class OrgRepository {
         }
     }
 
-    async updateHotel(id, body) {
+    //update an organization using id
+    async updateOrg(id, body) {
         var response = {
             "status" : 500
         };
@@ -37,6 +39,53 @@ class OrgRepository {
         }
     }
 
+    //get all organizations
+    async getAllOrgs() {
+        var response = {
+            "status" : 500
+        };
+        try {
+            const allOrgs = await OrgModel.find();
+            response.status = 200;
+            response.body = allOrgs;
+            return response;
+        } catch (error) {
+            response.body = error;
+            return response;
+        }
+    }
+
+    //get organization by id
+    async getOrgById(id) {
+        var response = {
+            "status" : 500
+        };
+        try {
+            const org = await OrgModel.findById(id);
+            response.status = 200;
+            response.body = org;
+            return response;
+        } catch (error) {
+            response.body = error;
+            return response;
+        }
+    }
+
+    //delete organization by id
+    async deleteOrgById(id) {
+        var response = {
+            "status" : 500
+        };
+        try {
+            const org = await OrgModel.findByIdAndDelete(id);
+            response.status = 200;
+            response.body = org;
+            return response;
+        } catch (error) {
+            response.body = error;
+            return response;
+        }
+    }
 
 }
 
