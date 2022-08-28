@@ -4,6 +4,12 @@
         "port" : 8081
     },
     "DB" : {
-        "mongo" : "mongodb+srv://vimaldumdum:vimal123@cluster0.ueoqgy0.mongodb.net/?retryWrites=true&w=majority"
+        "mongo" : "mongodb-link-will-add-how-to-get-this-in-readme"
+    },
+    "JWT" : "9DY8YSNJ+XEZM3wGEd66h7x+vWpHKY0cx+Qo2xtnsT0=",
+    "UserRoles" : {
+        "super_admin" : "Super Admin",
+        "admin" : "Admin",
+        "user" : "User" 
     }
 }
